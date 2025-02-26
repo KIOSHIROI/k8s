@@ -1,0 +1,145 @@
+{
+    "Lists": {
+        "nginx:1.26.1": {
+            "id": "6a5ee1954d86336620f4ce3e5ec050f5b9cc03d1ba57fe78e7fcb3f826d61c9b",
+            "name": "nginx",
+            "name_without_repo": "nginx",
+            "tag": "1.26.1",
+            "total_size": 7157,
+            "layer_metadata": [
+                {
+                    "size": 29150411,
+                    "layer": "sha256:09f376ebb190216b0459f470e71bec7b5dfa611d66bf008492b40dcc5f1d8eae"
+                },
+                {
+                    "size": 41829255,
+                    "layer": "sha256:50cd203f28712ac72c307d5adccca5316405deec548246c8ac59b5f3e0217cbb"
+                },
+                {
+                    "size": 628,
+                    "layer": "sha256:9b3addd3eb3dbfb5b3d69303cd4aae75af5164f17e5d0319555c792af67536f9"
+                },
+                {
+                    "size": 959,
+                    "layer": "sha256:c2744bd3c38803b771ee0c3e37acf3c6c667922b16672c78e39dc81009aa7078"
+                },
+                {
+                    "size": 396,
+                    "layer": "sha256:99c7eef6601a643e3b56eaa2b2208cc5d281f75275fe386f39aa4e085ed9d7cf"
+                },
+                {
+                    "size": 1213,
+                    "layer": "sha256:0b362abff7c03531d60b1b7194f36ca0d46049b8913c70955520f5ef88d3eb5e"
+                },
+                {
+                    "size": 1402,
+                    "layer": "sha256:f9e3483e2126a15e588670b1e817ae65b96faad8ba2cca894cb7e8a9196b2212"
+                }
+            ]
+        },
+        "nginx:latest": {
+            "id": "4f67c83422ec747235357c04556616234e66fc3fa39cb4f40b2d4441ddd8f100",
+            "name": "nginx",
+            "name_without_repo": "nginx",
+            "tag": "latest",
+            "total_size": 7175,
+            "layer_metadata": [
+                {
+                    "size": 29150411,
+                    "layer": "sha256:09f376ebb190216b0459f470e71bec7b5dfa611d66bf008492b40dcc5f1d8eae"
+                },
+                {
+                    "size": 41829603,
+                    "layer": "sha256:5529e0792248c08c2352ae43a116a81867dcf661b77e422c99e3e14a7c9d4fa2"
+                },
+                {
+                    "size": 628,
+                    "layer": "sha256:9b3addd3eb3dbfb5b3d69303cd4aae75af5164f17e5d0319555c792af67536f9"
+                },
+                {
+                    "size": 959,
+                    "layer": "sha256:57910a8c431625fa6695de9a283b99d7b854c979b750c85c51ab6e987c602125"
+                },
+                {
+                    "size": 397,
+                    "layer": "sha256:7b5f78f214490830815a00b45e379db71d68f862ca8e8d523405188e5d253694"
+                },
+                {
+                    "size": 1213,
+                    "layer": "sha256:b7923aa4e8a627b32d375c4f9a44c40f91a79acf706b7b0adaf4f0fc993ba8f5"
+                },
+                {
+                    "size": 1402,
+                    "layer": "sha256:785625911f125e287a8a7b28a70c09a0229405ad28bfa837e1e25f06c967cc68"
+                }
+            ]
+        },
+        "testimage/busybox:latest": {
+            "id": "65ad0d468eb1c558bf7f4e64e790f586e9eda649ee9f130cd0e835b292bbc5ac",
+            "name": "testimage/busybox",
+            "name_without_repo": "testimage/busybox",
+            "tag": "latest",
+            "total_size": 372,
+            "layer_metadata": [
+                {
+                    "size": 2220458,
+                    "layer": "sha256:d0f42ecf7e6cd9d1b2a6eb22f45ada31d70a854a985ff6a5c24149147bbb6287"
+                }
+            ]
+        },
+        "testimage/busybox:v1": {
+            "id": "65ad0d468eb1c558bf7f4e64e790f586e9eda649ee9f130cd0e835b292bbc5ac",
+            "name": "testimage/busybox",
+            "name_without_repo": "testimage/busybox",
+            "tag": "v1",
+            "total_size": 372,
+            "layer_metadata": [
+                {
+                    "size": 2220458,
+                    "layer": "sha256:d0f42ecf7e6cd9d1b2a6eb22f45ada31d70a854a985ff6a5c24149147bbb6287"
+                }
+            ]
+        },
+        "testimage/redis:latest": {
+            "id": "1a83fd5edeedfe9b2889414a2226f9f6bc24235f027f6f27f9e86ad38ccf440e",
+            "name": "testimage/redis",
+            "name_without_repo": "testimage/redis",
+            "tag": "latest",
+            "total_size": 8739,
+            "layer_metadata": [
+                {
+                    "size": 29150411,
+                    "layer": "sha256:09f376ebb190216b0459f470e71bec7b5dfa611d66bf008492b40dcc5f1d8eae"
+                },
+                {
+                    "size": 1105,
+                    "layer": "sha256:9ae6a7172b0101bd5b52091e6242e0a129483e0333f78a428415b1cfbdf44d88"
+                },
+                {
+                    "size": 875,
+                    "layer": "sha256:2c310454138bad0714c36154827e227ff62e5f3d99a03657c62b929d50ade0ed"
+                },
+                {
+                    "size": 1440323,
+                    "layer": "sha256:3eba9ec960aa877d62935068b1773f92d70161985cb200dcf3ef5a0db80f7415"
+                },
+                {
+                    "size": 14918422,
+                    "layer": "sha256:3d36c165ff0a78cfc9662b6a725b02b3eb55e72183a0b3850308765472210218"
+                },
+                {
+                    "size": 97,
+                    "layer": "sha256:493d196d734f2f1d0f010dc04ed4125b07cece03be784d66f0fd2cb9728a9708"
+                },
+                {
+                    "size": 32,
+                    "layer": "sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1"
+                },
+                {
+                    "size": 572,
+                    "layer": "sha256:484e0560ae9065cf6b739458e971cd2a13eaf44868fa4459af87457d429fb187"
+                }
+            ]
+        }
+    }
+}
