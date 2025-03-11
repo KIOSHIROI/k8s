@@ -17,9 +17,9 @@ func main() {
 	localCacheFile := "/etc/kubernetes/cache.json"
 	klog.Infof("启动监听器")
 	reg, err := layer.NewRegistry(
-		"https://docker.bnuzh.top",
-		"shuaige",
-		"shuaige",
+		"http://localhost:5000",
+		"",
+		"",
 	)
 	if err != nil {
 		klog.Fatalf("监听器启动失败, err: %s", err)

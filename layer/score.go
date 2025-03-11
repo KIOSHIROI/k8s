@@ -141,9 +141,9 @@ func (pl *LayerPro) getLayers(images []DockerImageName) []LayerMetadata {
 
 func (pl *LayerPro) newCache() error {
 	reg, err := NewRegistry(
-		"https://docker.bnuzh.top",
-		"shuaige",
-		"shuaige",
+		"http://localhost:5000",
+		"",
+		"",
 	)
 	if err != nil {
 		klog.Fatalf("监听器启动失败, err: %s", err)
