@@ -2,3 +2,5 @@ go.mod
 .DS_Store
 go.sum
 
+.go-version
+.goenv.local
