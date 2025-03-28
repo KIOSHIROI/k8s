@@ -106,7 +106,7 @@ func (pl *LayerPro) ImageExist(imageName string) (bool, error) {
 
 func (pl *LayerPro) ComputeLayerScore(images []DockerImageName, nodeName string) (int64, int64) {
 	klog.Infof("镜像：%v", images)
-	allLocalImages := pl.imageHandler.ListAllLocalImagesInRepo("docker.bnuzh.top")
+	allLocalImages := pl.imageHandler.ListAllLocalImagesInRepo("http://localhost:5000")
 	// 从缓存中拿到本地所有镜像的层信息
 	allLocalImageLayers := pl.getLayers(allLocalImages)
 	// 拿到所有pod image 需要的层信息
