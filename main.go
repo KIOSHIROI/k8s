@@ -16,7 +16,7 @@ func main() {
 	// 定义等待时间，设置为 10 秒，用于控制监听器的轮询间隔
 	waitTs := 10 * time.Second
 	// 定义本地缓存文件的路径，用于存储监听器获取的数据
-	localCacheFile := "/etc/kubernetes/cache.json"
+	localCacheFile := "/cache.json"
 
 	// 记录日志，表示启动监听器
 	klog.Infof("启动监听器")
@@ -59,7 +59,7 @@ func main() {
 	// 执行调度器命令
 	// 如果执行失败，记录错误日志并退出程序
 	if err := command.Execute(); err != nil {
-		fmt.Fprintf(os.Stderr, "%v", err) // 将错误信息输出到标准错误流
+		fmt.Fprintf(os.Stderr, "%v\n", err) // 将错误信息输出到标准错误流
 		os.Exit(1)                      // 使用非零退出码表示错误
 	}
 }
