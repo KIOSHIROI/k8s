@@ -5,6 +5,7 @@ import (
 	"context"
 	"fmt"
 	"math"
+	"os"
 
 	v1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -24,6 +25,7 @@ type LayerPro struct {
 	// handle 是调度器框架的句柄
 	handle framework.Handle
 }
+
 // 确保LayerPro实现了ScorePlugin接口
 var _ = framework.ScorePlugin(&LayerPro{})
 
@@ -136,8 +138,23 @@ func (pl *LayerPro) getLayers(images []DockerImageName) []LayerMetadata {
 	for _, img := range images {
 		imageMata, err := pl.catchHandler.Search(img)
 		if err != nil {
-			klog.Errorf("查找镜像层失败，错误信息: %v", err)
-			continue
+			if os.IsNotExist(err) {
+				// 如果缓存文件不存在，初始化缓存
+				err = pl.newCache()
+				if err != nil {
+					klog.Errorf("初始化缓存失败，错误信息: %v", err)
+					continue
+				}
+				// 重新尝试获取镜像元数据
+				imageMata, err = pl.catchHandler.Search(img)
+				if err != nil {
+					klog.Errorf("重新查找镜像层失败，错误信息: %v", err)
+					continue
+				}
+			} else {
+				klog.Errorf("查找镜像层失败，错误信息: %v", err)
+				continue
+			}
 		}
 		res = append(res, imageMata.LayerMetadata...)
 	}
