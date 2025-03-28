@@ -16,7 +16,7 @@ func main() {
 	// 定义等待时间，设置为 10 秒，用于控制监听器的轮询间隔
 	waitTs := 10 * time.Second
 	// 定义本地缓存文件的路径，用于存储监听器获取的数据
-	localCacheFile := "./cache.json"
+	localCacheFile := "cache.json"
 
 	// 记录日志，表示启动监听器
 	klog.Infof("启动监听器")

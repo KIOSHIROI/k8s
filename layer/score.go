@@ -65,7 +65,7 @@ func (pl *LayerPro) ScoreExtensions() framework.ScoreExtensions {
 }
 
 func New(_ runtime.Object, h framework.Handle) (framework.Plugin, error) {
-	c, err := NewImageMetadataListFromCache("/etc/kubernetes/cache.json")
+	c, err := NewImageMetadataListFromCache("cache.json")
 	if err != nil {
 		return nil, err
 	}
