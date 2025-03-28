@@ -1,3 +1,4 @@
+// Package layer 提供了Docker镜像和镜像层管理的功能
 package layer
 
 import (
@@ -14,15 +15,19 @@ import (
 	"k8s.io/kubernetes/pkg/scheduler/framework"
 )
 
+// LayerPro 是一个Kubernetes调度器插件，用于基于镜像层和节点资源进行Pod调度
 type LayerPro struct {
+	// catchHandler 用于处理镜像元数据缓存
 	catchHandler *ImageMetadataLists
+	// imageHandler 用于处理Docker镜像操作
 	imageHandler *DockerImages
-	handle       framework.Handle
+	// handle 是调度器框架的句柄
+	handle framework.Handle
 }
-
+// 确保LayerPro实现了ScorePlugin接口
 var _ = framework.ScorePlugin(&LayerPro{})
 
-const Name = "LayerPro" //LL是  插件名称
+const Name = "LayerPro"
 
 func (pl *LayerPro) Name() string {
 	return Name
@@ -176,13 +181,13 @@ func (pl *LayerPro) computeWeight(nodeInfo *framework.NodeInfo, nodeName string,
 	podReq, _ := resourcehelper.PodRequestsAndLimits(pod)
 	// klog.Infof("当前节点：%s, 当前POD request cpu: %d, memory: %d", nodeName, podReq.Cpu().MilliValue(), podReq.Memory().Value())
 
-	OccuCPU := float64(1 - float64(float64(allocatedCpu - podReq.Cpu().MilliValue()) / float64(allocatable.Cpu().MilliValue())))
-	OccuMem := float64(1 - float64(float64(allocatedMem - podReq.Memory().Value()) / float64(allocatable.Memory().Value())))
-	
+	OccuCPU := float64(1 - float64(float64(allocatedCpu-podReq.Cpu().MilliValue())/float64(allocatable.Cpu().MilliValue())))
+	OccuMem := float64(1 - float64(float64(allocatedMem-podReq.Memory().Value())/float64(allocatable.Memory().Value())))
+
 	std := math.Abs((OccuCPU - OccuMem) / 2)
 	// weight := 1 - std
-	klog.Infof("当前节点：%s, 剩余cpu：%d  总CPU：%d  cpu占用: %f  剩余内存: %d  总内存：%d  内存占用：%f  资源标准差: %f", nodeName, allocatedCpu - podReq.Cpu().MilliValue(), allocatable.Cpu().MilliValue(), OccuCPU, allocatedMem - podReq.Memory().Value(), allocatable.Memory().Value(), OccuMem, std)
-	
+	klog.Infof("当前节点：%s, 剩余cpu：%d  总CPU：%d  cpu占用: %f  剩余内存: %d  总内存：%d  内存占用：%f  资源标准差: %f", nodeName, allocatedCpu-podReq.Cpu().MilliValue(), allocatable.Cpu().MilliValue(), OccuCPU, allocatedMem-podReq.Memory().Value(), allocatable.Memory().Value(), OccuMem, std)
+
 	if layerSizeMB > 10 && std < 0.16 && OccuCPU < 0.6 {
 		return 2
 	}
