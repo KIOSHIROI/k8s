@@ -5,6 +5,8 @@ import (
 	"bytes"
 	"encoding/json"
 	"os"
+
+	"k8s.io/klog/v2"
 )
 
 // LayerMetadata 表示Docker镜像层的元数据信息
@@ -41,6 +43,7 @@ type ImageMetadataLists struct {
 
 // NewImageMetadataListFromCache 从缓存文件中加载镜像元数据列表
 func NewImageMetadataListFromCache(filePath string) (*ImageMetadataLists, error) {
+	klog.Infoln("Load image metadata from cache file", filePath)
 	jf, err := NewJsonFile(filePath)
 	if err != nil {
 		return &ImageMetadataLists{}, err

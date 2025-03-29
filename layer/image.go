@@ -8,6 +8,7 @@ import (
 	"github.com/docker/docker/api/types"
 	"github.com/docker/docker/api/types/filters"
 	"github.com/docker/docker/client"
+	"k8s.io/klog/v2"
 )
 
 // DockerImageName 表示Docker镜像的完整名称，包含仓库地址、镜像名和标签
@@ -66,6 +67,7 @@ func NewDockerImage(address string, catchFile string) (*DockerImages, error) {
 
 // ListAllLocalImagesInRepo 列出本地指定仓库中的所有镜像
 func (d *DockerImages) ListAllLocalImagesInRepo(repo string) []DockerImageName {
+	klog.Info("LisAllLocalImagesInRepo")
 	res := []DockerImageName{}
 	r, _ := d.Cli.ImageList(context.TODO(), types.ImageListOptions{})
 	for _, v := range r {

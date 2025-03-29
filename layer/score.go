@@ -133,11 +133,12 @@ func (pl *LayerPro) ComputeLayerScore(images []DockerImageName, nodeName string)
 }
 
 func (pl *LayerPro) getLayers(images []DockerImageName) []LayerMetadata {
+	klog.Infoln("getLayers")
 	res := []LayerMetadata{}
 	for _, img := range images {
 		imageMata, err := pl.catchHandler.Search(img)
 		if err != nil {
-			klog.Errorf("查找镜像层失败，错误信息: %v", err)
+			klog.Errorf("查找镜像层[%s]失败，错误信息: %v",img, err)
 			continue
 		}
 		res = append(res, imageMata.LayerMetadata...)
