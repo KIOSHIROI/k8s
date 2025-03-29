@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: coredns_v1.8.6
+  name: coredns-v1.8.6
 spec:
   schedulerName: layer-scheduler
   containers:
-  - name: coredns_v1.8.6
-    image: http://localhost:5000/v2/coredns:v1.8.6
+  - name: coredns-v1.8.6
+    image: http://172.16.115.132:5000/v2/coredns:v1.8.6
     ports:
     - containerPort: 80
     resources:

@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: mysql_5.7
+  name: mysql-5.7
 spec:
   schedulerName: layer-scheduler
   containers:
-  - name: mysql_5.7
-    image: http://localhost:5000/v2/mysql:5.7
+  - name: mysql-5.7
+    image: http://172.16.115.132:5000/v2/mysql:5.7
     ports:
     - containerPort: 80
     resources:
