@@ -26,7 +26,11 @@ func (di DockerImageName) Name() string {
 
 // NameWithoutRepoAddr 返回不包含仓库地址的镜像名称
 func (di DockerImageName) NameWithoutRepoAddr() string {
-	return strings.Join(strings.Split(di.Name(), "/")[1:], "/")
+	// return strings.Join(strings.Split(di.Name(), "/")[1:], "/")
+	s := strings.Split(di.Name(), "/")
+	imageNameWithTag := s[len(s)-1]
+	klog.Info("NameWithoutRepoAddr-imageName:", imageNameWithTag)
+	return imageNameWithTag
 }
 
 // Tag 返回镜像的标签
