@@ -44,11 +44,12 @@ func (pl *LayerPro) Score(ctx context.Context, state *framework.CycleState, pod 
 	// 注册一个控制镜像的服务，里面包括docker客户端
 	pl.ImageHandlerRegister(nodeInfo)
 	// 初始化一个列表，里面是pod下所有container的镜像名称
+	klog.Infof("pod name: %s", pod.Name)
 	imageNames := []DockerImageName{}
 	for _, c := range pod.Spec.Containers {
 		imageNames = append(imageNames, DockerImageName(c.Image))
 	}
-
+	klog.Infof("compute layer score!")
 	layerExistSize, resScore := pl.ComputeLayerScore(imageNames, nodeInfo.Node().Name)
 
 	layerSizeMB := layerExistSize / 1024 / 1024
@@ -138,7 +139,7 @@ func (pl *LayerPro) getLayers(images []DockerImageName) []LayerMetadata {
 	for _, img := range images {
 		imageMata, err := pl.catchHandler.Search(img)
 		if err != nil {
-			klog.Errorf("查找镜像层[%s]失败，错误信息: %v",img, err)
+			klog.Errorf("查找镜像层[%s]失败，错误信息: %v", img, err)
 			continue
 		}
 		res = append(res, imageMata.LayerMetadata...)

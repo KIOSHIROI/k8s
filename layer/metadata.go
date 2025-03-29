@@ -4,6 +4,7 @@ package layer
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"os"
 
 	"k8s.io/klog/v2"
@@ -89,9 +90,11 @@ func (re *ImageMetadataLists) Fromat() (bytes.Buffer, error) {
 // Search 根据镜像名称搜索镜像元数据
 func (re *ImageMetadataLists) Search(image DockerImageName) (ImageMetadata, error) {
 	res, ok := re.Lists[image.NameWithoutRepoAddr()]
+	fmt.Println(image.NameWithoutRepoAddr())
 	if ok {
 		return res, nil
 	}
+	klog.Warningln("Search: Can not find image metadata for", image)
 	return res, os.ErrNotExist
 }
 
