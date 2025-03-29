@@ -6,11 +6,7 @@ spec:
   schedulerName: layer-scheduler
   containers:
   - name: alpine-latest
-<<<<<<< HEAD
-    image: http://localhost:5000/v2/alpine:latest
-=======
     image: http://172.16.115.132:5000/v2/alpine:latest
->>>>>>> b94c60837ee97d10d67b0452509b479b83ff48a8
     ports:
     - containerPort: 80
     resources:
