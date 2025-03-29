@@ -30,6 +30,7 @@ func (di DockerImageName) NameWithoutRepoAddr() string {
 	s := strings.Split(di.Name(), "/")
 	imageNameWithTag := s[len(s)-1]
 	klog.Info("NameWithoutRepoAddr-imageName:", imageNameWithTag)
+	klog.Infof("%v", s)
 	return imageNameWithTag
 }
 
