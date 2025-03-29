@@ -1,3 +1,4 @@
 .DS_Store
 .go-version
 .goenv.local
+kube-scheduler
