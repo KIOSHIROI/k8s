@@ -6,7 +6,7 @@ spec:
   schedulerName: layer-scheduler
   containers:
   - name: alpine-latest
-    image: 172.16.115.132:5000/v2/alpine:latest
+    image: 172.16.115.132:5000/alpine:latest
     # 如果有服务运行在容器内并监听特定端口，请保留或调整以下 ports 配置
     # ports:
     # - containerPort: 80
