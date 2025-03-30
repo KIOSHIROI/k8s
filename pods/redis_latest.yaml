@@ -6,7 +6,7 @@ spec:
   schedulerName: layer-scheduler
   containers:
   - name: redis-latest
-    image: 172.16.115.132:5000/v2/redis:latest
+    image: 172.16.115.132:5000/redis:latest
     ports:
     - containerPort: 6379  # Redis 默认端口是 6379，而不是 80
     resources:
