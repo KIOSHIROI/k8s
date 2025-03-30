@@ -91,7 +91,7 @@ func (re *ImageMetadataLists) Fromat() (bytes.Buffer, error) {
 // Search 根据镜像名称搜索镜像元数据
 func (re *ImageMetadataLists) Search(image DockerImageName) (ImageMetadata, error) {
 	res, ok := re.Lists[image.NameWithoutRepoAddr()]
-	fmt.Println("image.NameWithoutRepoAddr:", image.NameWithoutRepoAddr())
+	klog.Info("image.NameWithoutRepoAddr:", image.NameWithoutRepoAddr())
 	if ok {
 		return res, nil
 	}
