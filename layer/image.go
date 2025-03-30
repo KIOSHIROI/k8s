@@ -27,12 +27,50 @@ func (di DockerImageName) Name() string {
 // NameWithoutRepoAddr 返回不包含仓库地址的镜像名称
 func (di DockerImageName) NameWithoutRepoAddr() string {
 	// return strings.Join(strings.Split(di.Name(), "/")[1:], "/")
-	s := strings.Split(di.Name(), "/")
-	imageNameWithTag := s[len(s)-1]
-	klog.Info("NameWithoutRepoAddr-imageName:", imageNameWithTag)
 	klog.Infof("di: %v", di)
-	klog.Infof("%v", s)
+	repo, imageName, tag, err := ParseDockerImageName("http://172.16.115.132:5000/v2/alpine:latest")
+	if err != nil {
+		klog.Error(err)
+	} else {
+		klog.Infof("Repo: %s, ImageName: %s, Tag: %s", repo, imageName, tag)
+	}
+
+	imageNameWithTag := imageName + ":" + tag
+	klog.Info("NameWithoutRepoAddr-imageName:", imageNameWithTag)
+
 	return imageNameWithTag
+}
+
+// 解析仓库地址 返回镜像名称和标签
+func ParseDockerImageName(fullName string) (repo, imageName, tag string, err error) {
+	// 按 "/" 分割
+	parts := strings.Split(fullName, "/")
+	// 如果有协议前缀（如 "http://"），跳过前两层
+	if strings.HasPrefix(parts[0], "http:") || strings.HasPrefix(parts[0], "https:") {
+		parts = parts[3:] // 跳过 "http://", 主机, 和 API 版本
+	} else {
+		parts = parts[1:] // 跳过主机和 API 版本
+	}
+
+	// 确保至少有镜像名称和标签
+	if len(parts) == 0 {
+		return "", "", "", fmt.Errorf("invalid Docker image name: %s", fullName)
+	}
+
+	// 按 ":" 分割镜像名称和标签
+	imageParts := strings.Split(parts[len(parts)-1], ":")
+	imageName = imageParts[0]
+	tag = "latest" // 默认标签
+	if len(imageParts) > 1 {
+		tag = imageParts[1]
+	}
+
+	// 如果有仓库地址，取最后一部分作为仓库地址
+	if len(parts) > 1 {
+		repo = parts[len(parts)-2]
+	}
+
+	return repo, imageName, tag, nil
 }
 
 // Tag 返回镜像的标签
