@@ -6,13 +6,16 @@ spec:
   schedulerName: layer-scheduler
   containers:
   - name: coredns-v1-8-6
-    image: http://172.16.115.132:5000/v2/coredns:v1.8.6
+    image: 172.16.115.132:5000/v2/coredns:v1.8.6
     ports:
-    - containerPort: 80
+    - containerPort: 53
+      protocol: UDP
+    - containerPort: 53
+      protocol: TCP
     resources:
       limits:
-        cpu: "1"
-        memory: 1Gi
+        cpu: "200m"      # 根据实际负载调整，一般不需要超过 500m
+        memory: "256Mi"  # 通常 128Mi 到 256Mi 已足够
       requests:
-        cpu: 500m
-        memory: 400Mi
+        cpu: "100m"      # 设置为 limits 的 1/2 或更低，视负载而定
+        memory: "128Mi"  # 确保有足够的内存处理 DNS 查询

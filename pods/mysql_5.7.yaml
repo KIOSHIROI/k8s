@@ -1,18 +1,31 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: mysql-5.7
+  name: mysql-5-7
 spec:
   schedulerName: layer-scheduler
   containers:
-  - name: mysql-5.7
-    image: http://172.16.115.132:5000/v2/mysql:5.7
+  - name: mysql-5-7
+    image: 172.16.115.132:5000/v2/mysql:5.7
     ports:
-    - containerPort: 80
+    - containerPort: 3306
+    env:
+    - name: MYSQL_ROOT_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: mysql-secret
+          key: password
     resources:
       limits:
-        cpu: "1"
-        memory: 1Gi
+        cpu: "2"
+        memory: "2Gi"
       requests:
-        cpu: 500m
-        memory: 400Mi
+        cpu: "500m"
+        memory: "1Gi"
+    volumeMounts:
+    - name: mysql-storage
+      mountPath: /var/lib/mysql
+  volumes:
+  - name: mysql-storage
+    persistentVolumeClaim:
+      claimName: mysql-pvc

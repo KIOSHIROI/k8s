@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: redis_latest
+spec:
+  schedulerName: layer-scheduler
+  containers:
+  - name: redis_latest
+    image: 172.16.115.132:5000/v2/redis:latest
+    ports:
+    - containerPort: 6379  # Redis 默认端口是 6379，而不是 80
+    resources:
+      limits:
+        cpu: "500m"       # 最多使用 0.5 个 CPU 核心
+        memory: "512Mi"   # 最多使用 512 MB 内存
+      requests:
+        cpu: "250m"       # 至少需要 0.25 个 CPU 核心
+        memory: "256Mi"   # 至少需要 256 MB 内存
