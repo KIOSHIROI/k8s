@@ -29,7 +29,7 @@ func (di DockerImageName) Name() string {
 func (di DockerImageName) NameWithoutRepoAddr() string {
 	// return strings.Join(strings.Split(di.Name(), "/")[1:], "/")
 	klog.Infof("di: %v", di)
-	repo, imageName, tag, err := ParseDockerImageName("http://172.16.115.132:5000/v2/alpine:latest")
+	repo, imageName, tag, err := ParseDockerImageName(di.String())
 	if err != nil {
 		klog.Error(err)
 	} else {
