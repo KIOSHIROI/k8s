@@ -55,8 +55,9 @@ func (pl *LayerPro) Score(ctx context.Context, state *framework.CycleState, pod 
 	layerSizeMB := layerExistSize / 1024 / 1024
 	weight := pl.computeWeight(nodeInfo, nodeInfo.Node().Name, layerSizeMB, pod)
 	klog.Infof("当前节点: %s, 权重: %v, 镜像名称: %s", nodeInfo.Node().Name, weight, imageNames)
-
-	res := float64(resScore) * weight * 100
+	
+	res := float64(resScore) * weight
+	// res := float64(resScore) * weight * 100
 	klog.Infof("当前节点: %s, 层调度器原始得分: %d, 层调度器加权分数: %d", nodeInfo.Node().Name, int64(resScore), int64(res))
 	return int64(res), nil
 }
