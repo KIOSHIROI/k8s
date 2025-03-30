@@ -6,13 +6,14 @@ spec:
   schedulerName: layer-scheduler
   containers:
   - name: alpine-latest
-    image: http://172.16.115.132:5000/v2/alpine:latest
-    ports:
-    - containerPort: 80
+    image: 172.16.115.132:5000/v2/alpine:latest
+    # 如果有服务运行在容器内并监听特定端口，请保留或调整以下 ports 配置
+    # ports:
+    # - containerPort: 80
     resources:
       limits:
-        cpu: "1"
-        memory: 1Gi
+        cpu: "100m"      # 设置为 0.1 核心，适用于大多数轻量级任务
+        memory: "128Mi"  # 设置为 128 MiB，通常足够运行基本命令或小型服务
       requests:
-        cpu: 500m
-        memory: 400Mi
+        cpu: "50m"       # 设置为 0.05 核心，确保调度时有足够的 CPU 资源
+        memory: "64Mi"   # 设置为 64 MiB，确保 Pod 启动时有最低内存保障
